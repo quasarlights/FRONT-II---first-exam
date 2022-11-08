@@ -76,7 +76,7 @@ function recorrerListadoYRenderizarTarjetas() {
     </span>
     `
   });
-  materiasBtn.disabled
+  materiasBtn.disabled=true 
 }
 
         //recorrerListadoYRenderizarTarjetas()
