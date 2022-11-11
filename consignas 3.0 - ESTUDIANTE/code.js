@@ -31,6 +31,7 @@ const cambiarTema = document.querySelector('#cambiar-tema');
 profileBtn.addEventListener("click", renderizarDatosUsuario);
 materiasBtn.addEventListener("click", recorrerListadoYRenderizarTarjetas);
 cambiarTema.addEventListener("click", alternarColorTema);
+
 /* --------------------------- NO TOCAR HASTA ACÁ --------------------------- */
 
 const nombreLabel = document.getElementById('nombre')
@@ -38,6 +39,8 @@ const edadLabel = document.getElementById('edad')
 const ciudadLabel = document.getElementById('ciudad')
 const javascriptLabel = document.getElementById('javascript')
 const fila = document.getElementById('fila')
+const sitio = document.getElementById('sitio')
+
 
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
@@ -45,10 +48,8 @@ function obtenerDatosDelUsuario() {
   const date = new Date()
   datosPersona.edad= parseInt(date.getFullYear()) - parseInt(prompt('Ingrese su año de nacimiento'))
   datosPersona.ciudad= prompt('Ingrese su ciudad')
-  datosPersona.interesPorJs= confirm('Estas interesado en JS?')
- 
-  console.log(datosPersona);
-  console.log(date);
+  datosPersona.interesPorJs= confirm('Estas interesado en JS?')? "Sí" : "No"
+  
 }
 
         
@@ -63,31 +64,37 @@ function renderizarDatosUsuario() {
 javascriptLabel.innerText=datosPersona.interesPorJs
 }
 
-        //renderizarDatosUsuario() 
-
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
+ fila.innerHTML= '';
+
   listado.forEach(e => {fila.innerHTML+=
-    `<span class='caja'>
-      <img src= "${e.imgUrl}" alt="${e.lenguajes}"/>
-      <h3>${e.lenguajes}</h3> 
-      <p>${e.bimestre}</p>
+    `<span class='caja' > 
+      <img src= "${e.imgUrl}" alt="${e.lenguajes}" "/>
+      <p style= "text-align: center;">${e.lenguajes}</p> 
+      <p style="text-align">${e.bimestre}</p>
     </span>
     `
   });
-  materiasBtn.disabled=true 
-}
 
-        //recorrerListadoYRenderizarTarjetas()
+}
 
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
- 
-  
-
-
+  sitio.classList.toggle("dark")
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 
+function verTexto(){
+  const sobreMi = document.querySelector('#sobre-mi')
+  window.addEventListener("keydown", (event)=> {
+    let tecla= event.key
+    if (tecla === "f" || tecla === "F") {
+      sobreMi.removeAttribute("class")
+  }
+  } )
+  
+}
+verTexto()
